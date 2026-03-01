@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout – Perimenopause guide for partners</title>
+  <link rel="stylesheet" href="checkout.css" />
+</head>
+<body>
+  <div class="checkout-page">
+    <header class="checkout-header">
+      <h1 class="checkout-title">Checkout</h1>
+      <a href="index.html" class="continue-shopping">Continue shopping</a>
+    </header>
+
+    <div class="checkout-content">
+      <div class="checkout-left">
+        <!-- Product -->
+        <section class="checkout-card product-card">
+          <div class="product-row">
+            <a href="peripartner-guide.pdf" class="product-icon product-icon-link" download title="Download guide (PDF)"><span class="product-icon-inner" aria-hidden="true"></span></a>
+            <div class="product-info">
+              <p class="product-name">Perimenopause guide for partners</p>
+              <p class="download-hint">Click the yellow icon to download. <a href="peripartner-guide.pdf" download class="download-link">Download guide (test, no payment)</a></p>
+              <a href="https://margaritaflare100.gumroad.com/" class="product-creator" target="_blank" rel="noopener">margaritaflare100</a>
+              <button type="button" class="remove-btn">Remove</button>
+            </div>
+            <p class="product-price">US$19.99</p>
+          </div>
+        </section>
+
+        <!-- Give as a gift -->
+        <section class="checkout-card">
+          <div class="gift-row">
+            <label for="gift-toggle" class="gift-label">Give as a gift?</label>
+            <input type="checkbox" id="gift-toggle" class="gift-toggle" />
+          </div>
+        </section>
+
+        <!-- Add a tip -->
+        <section class="checkout-card tip-card">
+          <div class="tip-header">
+            <span class="tip-title">Add a tip?</span>
+            <span class="tip-amount" id="tip-amount">US$0</span>
+          </div>
+          <div class="tip-buttons">
+            <button type="button" class="tip-btn active" data-tip="0">No Tip</button>
+            <button type="button" class="tip-btn" data-tip="15">15%</button>
+            <button type="button" class="tip-btn" data-tip="20">20%</button>
+            <button type="button" class="tip-btn" data-tip="25">25%</button>
+          </div>
+          <div class="custom-tip">
+            <span class="custom-tip-icon">$</span>
+            <input type="number" id="custom-tip" class="custom-tip-input" placeholder="Custom tip" min="0" step="0.01" />
+          </div>
+        </section>
+
+        <!-- Order summary -->
+        <section class="checkout-card summary-card">
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span id="summary-subtotal">US$19.99</span>
+          </div>
+          <div class="summary-row total-row">
+            <span>Total</span>
+            <span id="summary-total">US$19.99</span>
+          </div>
+        </section>
+      </div>
+
+      <div class="checkout-right">
+        <!-- Contact information -->
+        <section class="checkout-card">
+          <h2 class="section-title">Contact information</h2>
+          <label class="input-label" for="email">Email address</label>
+          <input type="email" id="email" class="checkout-input" placeholder="Your email address" />
+          <label class="input-label" for="fullname">Full name</label>
+          <input type="text" id="fullname" class="checkout-input" placeholder="Full name" />
+        </section>
+
+        <!-- Address -->
+        <section class="checkout-card">
+          <label class="input-label" for="country">Country</label>
+          <select id="country" class="checkout-input checkout-select">
+            <option value="US">United States</option>
+            <option value="GB">United Kingdom</option>
+            <option value="CA">Canada</option>
+            <option value="AU">Australia</option>
+            <option value="DE">Germany</option>
+            <option value="FR">France</option>
+            <option value="OTHER">Other</option>
+          </select>
+          <label class="input-label" for="zip">ZIP code</label>
+          <input type="text" id="zip" class="checkout-input" placeholder="ZIP code" />
+        </section>
+
+        <!-- Pay with -->
+        <section class="checkout-card pay-card">
+          <h2 class="section-title">Pay with</h2>
+          <div class="pay-method">
+            <span class="card-icon" aria-hidden="true"></span>
+            <span>Card</span>
+          </div>
+          <div class="card-fields">
+            <label class="input-label" for="cardnumber">Card number</label>
+            <input type="text" id="cardnumber" class="checkout-input" placeholder="Card number" maxlength="19" />
+            <label class="input-label" for="cardexp">MM/YY CVC</label>
+            <input type="text" id="cardexp" class="checkout-input checkout-input-inline" placeholder="MM/YY" maxlength="5" />
+            <input type="text" id="cardcvc" class="checkout-input checkout-input-inline" placeholder="CVC" maxlength="4" />
+          </div>
+          <a href="https://gumroad.com/checkout?_gl=1*1ougxz1*_ga*OTUyNDMwMTk3LjE3NzIzMjExNTI.*_ga_6LJN6D94N6*czE3NzIzMjQwNDgkbzIkZzEkdDE3NzIzMjQwODEkajI3JGwwJGgw" class="pay-button" target="_blank" rel="noopener">Pay</a>
+        </section>
+      </div>
+    </div>
+
+    <footer class="checkout-footer">
+      <a href="#">Privacy</a>
+      <span class="footer-sep">-</span>
+      <a href="#">Terms</a>
+    </footer>
+  </div>
+  <script src="checkout.js"></script>
+</body>
+</html>
