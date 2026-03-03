@@ -33,10 +33,11 @@ The guide is delivered only after payment via a **backend** that watermarks the 
 
 ## Backend (webhook → watermark → one-time link)
 
-The **Peripartner backend** (Node.js) receives Gumroad webhooks, generates a watermarked PDF per buyer, and returns a one-time download URL valid for 24 hours.
+The **Peripartner backend** (Node.js) receives **Stripe Checkout webhooks**, generates a watermarked PDF per buyer, and returns a one-time download URL valid for 24 hours.
 
 - **Setup and run:** See [backend/README.md](backend/README.md).
-- **Endpoints:** `POST /api/webhook/gumroad`, `GET /d/:token` (download).
+- **Test Stripe checkout locally:** See [docs/STRIPE-CHECKOUT-TESTING.md](docs/STRIPE-CHECKOUT-TESTING.md) (frontend + backend + Stripe CLI steps).
+- **Endpoints:** `POST /api/webhook/stripe`, `GET /d/:token` (download). A legacy Gumroad endpoint also exists.
 - **Project name:** `peripartner-backend` in `backend/package.json`.
 
 ## File structure

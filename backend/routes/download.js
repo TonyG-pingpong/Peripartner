@@ -27,6 +27,8 @@ router.get('/:token', (req, res) => {
   }
 
   tokenStore.consume(token);
+  console.log('[Download] Serving PDF for token', token.substring(0, 8) + '...');
+
   res.setHeader('Content-Type', 'application/pdf');
   res.setHeader('Content-Disposition', `attachment; filename="${DOWNLOAD_FILENAME}"`);
 

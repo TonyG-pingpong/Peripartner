@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment successful – Peripartner</title>
+  <link rel="stylesheet" href="checkout.css" />
+</head>
+<body>
+  <div class="checkout-page">
+    <header class="checkout-header">
+      <h1 class="checkout-title">Thanks for your payment</h1>
+      <a href="index.html" class="continue-shopping">Home</a>
+    </header>
+
+    <div class="checkout-content">
+      <div class="checkout-left">
+        <section class="checkout-card">
+          <h2 class="section-title">Your download</h2>
+          <p id="status" style="margin: 0 0 12px;">Preparing your one-time download link…</p>
+
+          <a id="downloadBtn" class="pay-button" href="#" style="display:none; text-align:center;">
+            Download your PDF
+          </a>
+
+          <p id="hint" style="margin: 12px 0 0; color:#444; font-size:0.95rem; display:none;">
+            This link is valid for 24 hours and works once.
+          </p>
+        </section>
+      </div>
+
+      <div class="checkout-right">
+        <section class="checkout-card">
+          <h2 class="section-title">Troubleshooting</h2>
+          <p style="margin:0;">
+            If the button doesn’t appear, wait a few seconds and refresh this page. Your payment may still be processing.
+          </p>
+        </section>
+      </div>
+    </div>
+
+    <footer class="checkout-footer">
+      <a href="#">Privacy</a>
+      <span class="footer-sep">-</span>
+      <a href="#">Terms</a>
+    </footer>
+  </div>
+
+  <script src="success.js"></script>
+</body>
+</html>
+

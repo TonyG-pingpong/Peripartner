@@ -1,0 +1,20 @@
+Replace [YOUR_IP] with your computer's IP address (e.g. 192.168.1.217) before sending.
+You can find it by running "ipconfig" and looking for IPv4 Address.
+----------------------------------------------------------------------------
+
+Checkout test – Peripartner
+
+1. Open this link in your browser:
+   http://192.168.1.217:3000
+
+2. Click "Buy this", then "Pay with card (Stripe)".
+
+3. On Stripe's page use this test card:
+   Card:   4242 4242 4242 4242
+   Expiry: 12/34 (or any future date)
+   CVC:    any 3 digits
+
+4. Complete the payment.
+
+5. On the "Thanks for your payment" page, click "Download your PDF".
+   (One-time link, valid 24 hours.)
