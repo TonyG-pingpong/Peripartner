@@ -4,11 +4,17 @@ A static landing page that mirrors the [Gumroad product page](https://margaritaf
 
 ## Run locally on your computer
 
+**Recommended (frontend + backend together):**
+
 1. Open a terminal in this folder (`c:\projects\Peripartner`).
-2. Run one of these:
-   - **Option A (Node):** `npx serve` then open http://localhost:3000
-   - **Option B (Python 3):** `python -m http.server 8080` then open http://localhost:8080
-   - **Option C:** Open `index.html` in your browser (some features may differ without a server).
+2. Run **`start.cmd`** (or double‑click `start.cmd` in Explorer). This starts both the frontend (port 3000) and backend (port 4000). Choose **(L)ocal** or **(N)etwork** when prompted.
+3. Open **http://localhost:3000** in your browser (or the URL shown for network mode).
+
+**Alternative (frontend only):**
+
+- **Option A (Node):** `npx serve` then open http://localhost:3000
+- **Option B (Python 3):** `python -m http.server 8080` then open http://localhost:8080
+- **Option C:** Open `index.html` in your browser (some features may differ without a server).
 
 ## Deploy to the internet
 
@@ -37,6 +43,7 @@ The **Peripartner backend** (Node.js) receives **Stripe Checkout webhooks**, gen
 
 - **Setup and run:** See [backend/README.md](backend/README.md).
 - **Test Stripe checkout locally:** See [docs/STRIPE-CHECKOUT-TESTING.md](docs/STRIPE-CHECKOUT-TESTING.md) (frontend + backend + Stripe CLI steps).
+- **Test on your network** (other devices on LAN): See [docs/TESTING-ON-NETWORK-STEPS.md](docs/TESTING-ON-NETWORK-STEPS.md).
 - **Endpoints:** `POST /api/webhook/stripe`, `GET /d/:token` (download). A legacy Gumroad endpoint also exists.
 - **Project name:** `peripartner-backend` in `backend/package.json`.
 
@@ -48,6 +55,8 @@ Peripartner/
 ├── checkout.html
 ├── styles.css
 ├── checkout.css
+├── start.cmd                # Start frontend + backend (double‑click or run from terminal)
+├── start.ps1                # Startup script (used by start.cmd)
 ├── backend/                 # Webhook + watermark + one-time download
 │   ├── server.js
 │   ├── package.json

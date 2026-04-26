@@ -56,12 +56,26 @@ $baseUrl = "http://localhost:4000"
 $frontendUrl = "http://localhost:3000"
 $networkIp = $null
 
+function Normalize-HostIp {
+    param([string]$Value)
+    if ([string]::IsNullOrWhiteSpace($Value)) { return $Value }
+    $v = $Value.Trim()
+    # If user pasted a full URL, parse it.
+    if ($v -match '^https?://') {
+        try { return ([Uri]$v).Host } catch { return $v }
+    }
+    # If user pasted IP:port, strip the port.
+    if ($v -match '^\[[^\]]+\]:(\d+)$') { return $v } # (rare) bracketed IPv6: keep as-is
+    if ($v -match '^[^:]+:\d+$') { return ($v -split ':')[0] }
+    return $v
+}
+
 if ($mode -eq "N") {
     Write-Host ""
     Write-Host '  Enter this computer''s IP address so others can reach the app.' -ForegroundColor Yellow
     Write-Host '  (Run ipconfig and look for IPv4 Address, e.g. 192.168.1.100)' -ForegroundColor Gray
     $networkIp = Read-Host '  IP address'
-    $networkIp = $networkIp.Trim()
+    $networkIp = Normalize-HostIp $networkIp
     if ([string]::IsNullOrWhiteSpace($networkIp)) {
         try {
             $addrs = [System.Net.Dns]::GetHostAddresses($env:COMPUTERNAME) | Where-Object { $_.AddressFamily -eq 'InterNetwork' -and $_.ToString() -notlike '127.*' }
@@ -117,6 +131,9 @@ if ($mode -eq "N") {
         "4. Complete the payment." + [Environment]::NewLine + [Environment]::NewLine +
         '5. On the "Thanks for your payment" page, click "Download your PDF".' + [Environment]::NewLine +
         "   (One-time link, valid 24 hours.)" + [Environment]::NewLine + [Environment]::NewLine +
+        "   Note: When testing over HTTP, Chrome may show a warning about an insecure" + [Environment]::NewLine +
+        "   connection when downloading. That's normal for network testing. Click" + [Environment]::NewLine +
+        "   ""Download insecure file"" to get the PDF. This warning won't appear after deploy (HTTPS)." + [Environment]::NewLine + [Environment]::NewLine +
         "============================================"
     Write-Host $msg -ForegroundColor Cyan
     $msgFile = Join-Path $ProjectRoot "message-for-testers.txt"

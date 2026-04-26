@@ -8,9 +8,9 @@ Use these steps so other people on your network can open the checkout page and r
 
 From the **project root**, run:
 
-- **PowerShell:** `.\start.ps1`  
+- **`start.cmd`** — double‑click it in Explorer, or run `start.cmd` from a terminal. This is the usual way to start the project on Windows.
+- **PowerShell (alternative):** `.\start.ps1`  
   (If you get an execution policy error: `powershell -ExecutionPolicy Bypass -File .\start.ps1`)
-- **Or double‑click:** `start.cmd`
 
 The script will ask:
 

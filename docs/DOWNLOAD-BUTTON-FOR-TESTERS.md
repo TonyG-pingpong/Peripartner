@@ -4,7 +4,7 @@
 
 When you click **"Download your PDF"** on the "Thanks for your payment" page:
 
-1. **Your browser** requests the PDF from the server (your host’s computer).
+1. **Your browser** requests the PDF from the server (your host's computer).
 2. The file **peripartner-guide.pdf** should:
    - **Download** into your usual Downloads folder, or
    - **Open** in a new tab/window (depending on your browser and settings).
@@ -35,5 +35,18 @@ So you should see either:
 
 - When the tester clicks Download, **your backend window** should show a line like:  
   `[Download] Serving PDF for token abc12345...`  
-- If that line **never** appears, the tester’s browser is not reaching your backend (e.g. **firewall** blocking port **4000** from the network).  
-  **Fix:** In Windows, allow inbound TCP port **4000** (and **3000** if needed) for your Node/backend app or for “Private” networks.
+- If that line **never** appears, the tester's browser is not reaching your backend (e.g. **firewall** blocking port **4000** from the network).  
+  **Fix:** In Windows, allow inbound TCP port **4000** (and **3000** if needed) for your Node/backend app or for "Private" networks.
+
+---
+
+## Common warnings (and will they appear after deploy?)
+
+| Warning | Can we remove it? | After deploy? |
+|--------|--------------------|---------------|
+| **"Your connection is not private" / "Not secure"** (when opening the site or the download link over HTTP) | Not in code — it's the browser warning about HTTP. | **No.** Use HTTPS and a proper domain; this warning goes away. |
+| **Mixed content** (page loads over HTTPS but download link is `http://...`) | **Yes.** Set backend `BASE_URL` to your production HTTPS URL (e.g. `https://api.yoursite.com`) so the download link is also HTTPS. | Avoided if `BASE_URL` is HTTPS in production. |
+| **"This file isn't commonly downloaded"** (Chrome/some browsers for PDFs) | Browser heuristic; we can't fully remove it. Backend already sends correct `Content-Type` and `Content-Disposition`. | May still appear occasionally; user can choose "Keep" / "Save". |
+| **Stripe "Test mode"** banner on Stripe's checkout page | We can't remove it; it's on Stripe's site. | **No.** Use live Stripe keys and it disappears. |
+
+**If you see a different warning:** copy the exact message (or a screenshot) and share it so we can target that case.
