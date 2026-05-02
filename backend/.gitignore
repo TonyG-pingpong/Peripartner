@@ -2,4 +2,6 @@ node_modules/
 .env
 temp/
 master/*.pdf
+# Ship one canonical master so Render/production has the file (see MASTER_PDF_PATH).
+!master/peripartner-guide.pdf
 *.log

@@ -120,7 +120,13 @@ router.get('/fulfill', async (req, res) => {
     });
   } catch (err) {
     console.error('Stripe fulfill error:', err);
-    res.status(500).json({ error: 'Failed to fulfill purchase' });
+    const msg = err && err.message ? String(err.message) : '';
+    let error = 'Failed to fulfill purchase';
+    if (msg.includes('Master PDF not found') || msg.includes('MASTER_PDF_PATH')) {
+      error =
+        'Master PDF is missing on the server. Set MASTER_PDF_PATH on Render and deploy the PDF file.';
+    }
+    res.status(500).json({ error });
   }
 });
 
