@@ -18,9 +18,15 @@
     return;
   }
 
-  // Backend runs on port 4000. Use same host as this page so network testers
-  // (e.g. http://192.168.1.100:3000) call your machine, not theirs.
-  var apiBase = window.PERIPARTNER_API_BASE || (location.protocol + '//' + location.hostname + ':4000');
+  // API base:
+  // - If you set `window.PERIPARTNER_API_BASE` in the HTML, that wins.
+  // - Local dev: if the site is served on :3000, call the local backend on :4000.
+  // - Production: call the public API on `api.peripartner.com` (Render).
+  var apiBase =
+    window.PERIPARTNER_API_BASE ||
+    (location.port === '3000'
+      ? location.protocol + '//' + location.hostname + ':4000'
+      : 'https://api.peripartner.com');
 
   function showError(msg) {
     statusEl.textContent = msg;
