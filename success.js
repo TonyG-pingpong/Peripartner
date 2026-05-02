@@ -17,6 +17,18 @@
     statusEl.textContent = 'Missing session_id. Please return to the checkout and try again.';
     return;
   }
+  // Stripe replaces {CHECKOUT_SESSION_ID} only when redirecting after checkout.
+  // If you still see that text in the URL, you opened a placeholder link or Stripe did not substitute it.
+  if (
+    sessionId === '{CHECKOUT_SESSION_ID}' ||
+    sessionId.indexOf('CHECKOUT_SESSION_ID') !== -1 ||
+    sessionId.indexOf('cs_') !== 0
+  ) {
+    statusEl.textContent =
+      'This page needs a real Stripe session id (cs_…) in the URL. Stripe only adds that after checkout—not when you paste or bookmark the example URL with {CHECKOUT_SESSION_ID}. Use your checkout’s Pay button, then complete payment; or in Stripe Dashboard set the Payment Link “After payment” URL to https://www.peripartner.com/success.html?session_id={CHECKOUT_SESSION_ID} (exact placeholder, no spaces).';
+    statusEl.style.color = '#b00020';
+    return;
+  }
 
   // API base:
   // - If you set `window.PERIPARTNER_API_BASE` in the HTML, that wins.
