@@ -15,16 +15,16 @@ const COPYRIGHT_OPACITY = 0.65;
 const LINE_SPACING = 6;
 
 /**
- * Build the visible watermark string (e.g. "Licensed to name (email)" or "Licensed to email").
+ * Build the visible watermark string (personal-use license line with email and/or name).
  * @param {{ email: string, name?: string }} buyer
  * @returns {string}
  */
 function watermarkText(buyer) {
   const { email, name } = buyer;
   if (name && name.length > 0) {
-    return `Licensed to ${name} (${email})`;
+    return `This document is licensed for personal use only to ${name} (${email})`;
   }
-  return `Licensed to ${email}`;
+  return `This document is licensed for personal use only to ${email}`;
 }
 
 /**
@@ -72,7 +72,11 @@ async function createWatermarkedPdf(masterPdfPath, outputPath, buyer) {
   // Invisible watermark: buyer email (and name) in PDF metadata
   doc.setTitle('Perimenopause guide for partners');
   doc.setAuthor(buyer.email);
-  doc.setSubject(buyer.name ? `Licensed to ${buyer.name}` : 'Licensed download');
+  doc.setSubject(
+    buyer.name
+      ? `Personal use only — ${buyer.name} (${buyer.email})`
+      : `Personal use only — ${buyer.email}`,
+  );
   doc.setKeywords([buyer.email, 'peripartner', 'perimenopause']);
 
   const pdfBytes = await doc.save();

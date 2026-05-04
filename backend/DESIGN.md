@@ -5,7 +5,7 @@
 - **Step 1:** No PDF on the public site. Only the backend has the master PDF.
 - **Step 2:** Gumroad sends a webhook when a sale completes.
 - **Step 3:** Backend creates a unique PDF per purchase with **all** watermark options:
-  - **Visible watermark:** e.g. “Licensed to buyer@email.com” (and/or name) on each page.
+  - **Visible watermark:** e.g. “This document is licensed for personal use only to buyer@email.com” (and/or name) on each page.
   - **Invisible watermark:** optional metadata or steganography (e.g. buyer email in PDF metadata / custom XMP or simple pattern). Documented so we can add later if needed.
 - **Step 4:** Backend generates a **one-time download link** valid for **24 hours**. Customer gets that link (e.g. via Gumroad redirect or email). Clicking it serves the PDF once, then the link is invalidated.
 
@@ -78,7 +78,7 @@ We only need: **buyer email** (required for watermark and delivery), and **name*
 
 ### 3a. Visible watermark
 
-- **Content:** e.g. “Licensed to {email}” or “{name} ({email})” on each page.
+- **Content:** e.g. “This document is licensed for personal use only to {email}” or “… to {name} ({email})” on each page.
 - **Placement:** bottom or corner of each page; semi-transparent so it doesn’t destroy readability.
 - **Implementation:** Node.js library that can add text to each page of a PDF (e.g. **pdf-lib** for Node, or **pdf-lib** + render text on each page). We’ll add one text layer per page with the buyer string.
 

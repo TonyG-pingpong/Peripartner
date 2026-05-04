@@ -102,7 +102,7 @@ Below, each step is explained in detail.
 - For **this** purchase, the backend:
   1. **Loads** the master PDF.
   2. **Adds a visible watermark** on every page:  
-     `Licensed to [name] ([email])` or `Licensed to [email]` if no name.
+     `This document is licensed for personal use only to [name] ([email])` or the same phrasing with `[email]` only if no name.
   3. **Adds an invisible watermark** by writing the buyer’s email (and name if present) into the PDF’s **metadata** (so if the file is shared, you can see who it was issued to).
   4. **Saves** this new PDF to a temporary file (e.g. under `backend/temp/`), with a unique name tied to a one-time token.
 
