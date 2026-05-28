@@ -54,15 +54,6 @@
     });
   }
 
-  var removeBtn = document.querySelector('.remove-btn');
-  if (removeBtn) {
-    removeBtn.addEventListener('click', function () {
-      if (confirm('Remove this item from your order?')) {
-        window.location.href = 'index.html';
-      }
-    });
-  }
-
   var stripePay = document.getElementById('stripe-pay-link');
   if (stripePay) {
     var apiBase =
