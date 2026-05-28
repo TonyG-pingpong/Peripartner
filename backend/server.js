@@ -8,6 +8,7 @@ const webhookRoutes = require('./routes/webhook');
 const downloadRoutes = require('./routes/download');
 const stripeWebhookRoutes = require('./routes/stripe');
 const stripeFulfillRoutes = require('./routes/stripeFulfill');
+const stripeCheckoutRoutes = require('./routes/stripeCheckout');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -26,6 +27,7 @@ app.use((req, res, next) => {
 app.use('/api/webhook', webhookRoutes);
 app.use('/api/webhook', stripeWebhookRoutes);
 app.use('/api/stripe', stripeFulfillRoutes);
+app.use('/api/stripe', stripeCheckoutRoutes);
 app.use('/d', downloadRoutes);
 
 app.get('/health', (req, res) => {
@@ -36,6 +38,7 @@ app.listen(PORT, () => {
   console.log(`Peripartner backend running at http://localhost:${PORT}`);
   console.log('  Webhook (Gumroad): POST /api/webhook/gumroad');
   console.log('  Webhook (Stripe):  POST /api/webhook/stripe');
+  console.log('  Checkout (Stripe): GET  /api/stripe/checkout');
   console.log('  Fulfill (Stripe):  GET  /api/stripe/fulfill?session_id=cs_...');
   console.log('  Download: GET /d/:token');
 });

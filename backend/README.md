@@ -19,6 +19,7 @@ Webhook → watermark PDF → one-time 24h download link. Node.js (Express + pdf
    - `BASE_URL` – public URL of this server (e.g. `https://your-api.example.com`). Used to build download links.
    - `MASTER_PDF_PATH` – path to the master PDF (no watermark). Example: `./master/peripartner-guide.pdf`.
    - `STRIPE_SECRET_KEY` – Stripe secret API key (test or live).
+   - `STRIPE_PRICE_ID` – live Price ID for the guide (e.g. `price_...` from Stripe → Product catalog → your product → Pricing).
    - `STRIPE_WEBHOOK_SECRET` – Stripe webhook secret for verifying events.
    - `GUMROAD_WEBHOOK_SECRET` – (optional, legacy) only if you still use Gumroad.
 
@@ -42,6 +43,7 @@ npm run dev
 
 | Method | Path | Description |
 |--------|------|-------------|
+| GET | `/api/stripe/checkout` | Creates a Stripe Checkout Session and redirects to hosted checkout (used by `checkout.html`). |
 | POST | `/api/webhook/stripe` | **Stripe** webhook. Expects `checkout.session.completed` events and extracts buyer email/name. Returns `downloadUrl` and `expiresAt`. |
 | POST | `/api/webhook/gumroad` | (Optional, legacy) Gumroad webhook. Body must include buyer `email` (and optionally `name`). Returns `downloadUrl` and `expiresAt`. |
 | GET | `/d/:token` | One-time download. Valid 24h, single use. |
