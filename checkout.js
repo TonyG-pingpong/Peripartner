@@ -63,5 +63,16 @@
     });
   }
 
+  // Same-tab navigation avoids popup blockers that often block target="_blank".
+  var stripePay = document.getElementById('stripe-pay-link');
+  if (stripePay) {
+    stripePay.addEventListener('click', function (e) {
+      var url = stripePay.getAttribute('href');
+      if (!url || url.indexOf('buy.stripe.com') === -1) return;
+      e.preventDefault();
+      window.location.href = url;
+    });
+  }
+
   updateUI();
 })();
