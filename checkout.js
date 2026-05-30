@@ -54,13 +54,21 @@
     });
   }
 
+  // Stripe Payment Link — goes directly to Stripe (avoids Render cold start on Pay).
+  // Production href is in checkout.html; local dev uses the test link below.
+  var STRIPE_PAYMENT_LINK_TEST = 'https://buy.stripe.com/test_9B614m98N2OsceAdNNd7q00';
+
   var stripePay = document.getElementById('stripe-pay-link');
   if (stripePay) {
-    var apiBase =
-      location.port === '3000'
-        ? location.protocol + '//' + location.hostname + ':4000'
-        : 'https://api.peripartner.com';
-    stripePay.href = apiBase + '/api/stripe/checkout';
+    if (location.port === '3000') {
+      stripePay.href = STRIPE_PAYMENT_LINK_TEST;
+    }
+    stripePay.addEventListener('click', function (e) {
+      var url = stripePay.getAttribute('href');
+      if (!url || url.indexOf('buy.stripe.com') === -1) return;
+      e.preventDefault();
+      window.location.href = url;
+    });
   }
 
   updateUI();
